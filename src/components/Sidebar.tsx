@@ -33,6 +33,7 @@ import FlexBetween from "./FlexBetween";
 import { usePathname, useRouter } from "next/navigation";
 import profileImage from "@/assets/profile.jpg";
 import Image from "next/image";
+import Link from "next/link";
 
 interface SidebarProps {
   user: User;
@@ -141,7 +142,7 @@ const Sidebar: FC<SidebarProps> = ({
               <FlexBetween color={theme.palette.secondary.main}>
                 <Box display="flex" alignItems="center" gap="0.5rem">
                   <Typography variant="h4" fontWeight="bold">
-                    ECOMVISION
+                    AJM
                   </Typography>
                 </Box>
                 {!isNonMobile && (
@@ -164,34 +165,35 @@ const Sidebar: FC<SidebarProps> = ({
 
                 return (
                   <ListItem key={text} disablePadding>
-                    <ListItemButton
-                      onClick={() => {
-                        router.push(`/${lcText}`);
-                        setActive(lcText);
-                      }}
-                      sx={{
-                        backgroundColor:
-                          active === lcText ? theme.palette.secondary[300] : "transparent",
-                        color:
-                          active === lcText
-                            ? theme.palette.primary[600]
-                            : theme.palette.secondary[100],
-                      }}
-                    >
-                      <ListItemIcon
+                    <Link href={`dashboard/${lcText}`}>
+                      <ListItemButton
+                        onClick={() => {
+                          setActive(lcText);
+                        }}
                         sx={{
-                          ml: "2rem",
+                          backgroundColor:
+                            active === lcText ? theme.palette.secondary[300] : "transparent",
                           color:
                             active === lcText
                               ? theme.palette.primary[600]
-                              : theme.palette.secondary[200],
+                              : theme.palette.secondary[100],
                         }}
                       >
-                        {icon}
-                      </ListItemIcon>
-                      <ListItemText primary={text} />
-                      {active === lcText && <ChevronRightOutlined sx={{ ml: "auto" }} />}
-                    </ListItemButton>
+                        <ListItemIcon
+                          sx={{
+                            ml: "2rem",
+                            color:
+                              active === lcText
+                                ? theme.palette.primary[600]
+                                : theme.palette.secondary[200],
+                          }}
+                        >
+                          {icon}
+                        </ListItemIcon>
+                        <ListItemText primary={text} />
+                        {active === lcText && <ChevronRightOutlined sx={{ ml: "auto" }} />}
+                      </ListItemButton>
+                    </Link>
                   </ListItem>
                 );
               })}
@@ -200,7 +202,7 @@ const Sidebar: FC<SidebarProps> = ({
 
           <Box bottom="10rem">
             <Divider />
-            <FlexBetween textTransform="none" gap="1rem" m="3rem 2rem 0 4rem">
+            <FlexBetween textTransform="none" gap="1rem" m="1rem 2rem 0 1rem">
               <Image src={profileImage} alt="User" className="w-10 h-10  rounded-2xl " />
               <Box textAlign="left">
                 <Typography

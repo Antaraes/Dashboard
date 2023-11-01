@@ -4,6 +4,7 @@ import { Box, CssBaseline, ThemeProvider, useMediaQuery } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { useMemo } from "react";
 import { themeSettings } from "@/theme";
+import ReduxProvider from "@/redux/provider";
 import { useAppSelector } from "@/redux/hook";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
@@ -20,26 +21,28 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const { data } = useGetUserQuery(userId);
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box
-        display={isNonMobile ? "flex" : "block"}
-        sx={{ bgcolor: "background.default" }}
-        width="100vw"
-        height="100vh"
-      >
-        <Sidebar
-          user={data}
-          isNonMobile={isNonMobile}
-          drawerWidth="250px"
-          isSidebarOpen={isSidebarOpen}
-          setIsSidebarOpen={setIsSidebarOpen}
-        />
-        <Box flexGrow={1}>
-          <Navbar user={data} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-          {children}
+    <ReduxProvider>
+      <ThemeProvider theme={theme}>
+        <Box
+          display={isNonMobile ? "flex" : "block"}
+          sx={{ bgcolor: "background.default" }}
+          width="100vw"
+          height="100vh"
+        >
+          <Sidebar
+            user={data}
+            isNonMobile={isNonMobile}
+            drawerWidth="300px"
+            isSidebarOpen={isSidebarOpen}
+            setIsSidebarOpen={setIsSidebarOpen}
+          />
+          <Box flexGrow={1}>
+            <Navbar user={data} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+            <div className="p-10">{children}</div>
+          </Box>
         </Box>
-      </Box>
-    </ThemeProvider>
+      </ThemeProvider>
+    </ReduxProvider>
   );
 };
 
