@@ -6,31 +6,31 @@ type ColorPalette = {
 };
 export const tokensDark: ColorPalette = {
   grey: {
-    0: "#ffffff", // manually adjusted
-    10: "#f6f6f6", // manually adjusted
-    50: "#f0f0f0", // manually adjusted
-    100: "#e0e0e0",
-    200: "#c2c2c2",
-    300: "#a3a3a3",
-    400: "#858585",
-    500: "#666666",
-    600: "#525252",
-    700: "#3d3d3d",
-    800: "#292929",
-    900: "#141414",
-    1000: "#000000", // manually adjusted
+    "50": "#fff4ec",
+    "100": "#ffe6d3",
+    "200": "#ffc9a7",
+    "300": "#ffa36f",
+    "400": "#ff7135",
+    "500": "#ff4a0e",
+    "600": "#fb3104",
+    "700": "#c91f05",
+    "800": "#9f1b0d",
+    "900": "#80190e",
+    "950": "#450905", // manually adjusted
   },
   primary: {
     // blue
-    100: "#d3d4de",
-    200: "#a6a9be",
-    300: "#7a7f9d",
-    400: "#4d547d",
-    500: "#21295c",
-    600: "#191F45", // manually adjusted
-    700: "#141937",
-    800: "#0d1025",
-    900: "#070812",
+    "50": "#f2fbfa",
+    "100": "#d5f2ef",
+    "200": "#aae5df",
+    "300": "#78d0cb",
+    "400": "#4cb5b2",
+    "500": "#339998",
+    "600": "#267b7b",
+    "700": "#226263",
+    "800": "#1f4e50",
+    "900": "#1e4143",
+    "950": "#0c2527",
   },
   secondary: {
     // yellow
@@ -79,15 +79,15 @@ export const themeSettings = (mode: "light" | "dark") => {
             },
             secondary: {
               ...tokensDark.secondary,
-              main: tokensDark.secondary[300],
+              main: tokensDark.secondary[400],
             },
             neutral: {
               ...tokensDark.grey,
-              main: tokensDark.grey[500],
+              main: tokensDark.grey[600],
             },
             background: {
-              default: tokensDark.primary[600],
-              alt: tokensDark.primary[500],
+              default: tokensDark.primary[950],
+              alt: tokensDark.primary[900],
             },
           }
         : {
@@ -107,7 +107,7 @@ export const themeSettings = (mode: "light" | "dark") => {
               main: tokensDark.grey[500],
             },
             background: {
-              default: tokensDark.grey[0],
+              default: tokensDark.grey[900],
               alt: tokensDark.grey[50],
             },
           }),

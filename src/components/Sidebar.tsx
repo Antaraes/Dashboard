@@ -165,12 +165,13 @@ const Sidebar: FC<SidebarProps> = ({
 
                 return (
                   <ListItem key={text} disablePadding>
-                    <Link href={`dashboard/${lcText}`}>
+                    <Link href={`${lcText}`}>
                       <ListItemButton
                         onClick={() => {
                           setActive(lcText);
                         }}
                         sx={{
+                          width: "250px",
                           backgroundColor:
                             active === lcText ? theme.palette.secondary[300] : "transparent",
                           color:

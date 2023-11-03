@@ -55,7 +55,7 @@ const Navbar: FC<NavbarProps> = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
           </IconButton>
         </FlexBetween>
         <FlexBetween>
-          <InputBase placeholder="Search..." />
+          <InputBase placeholder="Search..." sx={{ border: "2px" }} />
           <IconButton>
             <Search />
           </IconButton>

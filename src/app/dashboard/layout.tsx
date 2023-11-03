@@ -8,9 +8,9 @@ import ReduxProvider from "@/redux/provider";
 import { useAppSelector } from "@/redux/hook";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
-import { useGetUserQuery } from "@/redux/services/apiSlice";
+import { useGetProductsQuery, useGetUserQuery } from "@/redux/services/apiSlice";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const isNonMobile = useMediaQuery("(min-width: 768px)");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const mode: Mode = useAppSelector((state) => state.theme.mode);
@@ -27,12 +27,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           display={isNonMobile ? "flex" : "block"}
           sx={{ bgcolor: "background.default" }}
           width="100vw"
-          height="100vh"
+          height="full"
         >
           <Sidebar
             user={data}
             isNonMobile={isNonMobile}
-            drawerWidth="300px"
+            drawerWidth="250px"
             isSidebarOpen={isSidebarOpen}
             setIsSidebarOpen={setIsSidebarOpen}
           />
@@ -46,4 +46,4 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default Layout;
+export default DashboardLayout;
