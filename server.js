@@ -14,8 +14,9 @@ import morgan from "morgan";
 import User from "./models/User.js";
 import Product from "./models/Product.js";
 import ProductStat from "./models/ProductStat.js";
+import Transaction from "./models/Transaction.js";
 
-import { dataUser, dataProduct, dataProductStat } from "./data/data.js";
+import { dataUser, dataProduct, dataProductStat, dataTransaction } from "./data/data.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -41,5 +42,6 @@ mongoose
     // Only add data one time
     // Product.insertMany(dataProduct);
     // ProductStat.insertMany(dataProductStat);
+    // Transaction.insertMany(dataTransaction);
   })
   .catch((error) => console.log(`${error}`));
