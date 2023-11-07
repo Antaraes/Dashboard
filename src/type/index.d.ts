@@ -16,6 +16,11 @@ type User = {
   createdAt: string;
   updatedAt: string;
 };
+type ColorPalette = {
+  [key: string]: {
+    [key: number]: string;
+  };
+};
 interface MonthlyData {
   month: string;
   totalSales: number;

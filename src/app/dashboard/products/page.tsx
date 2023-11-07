@@ -13,6 +13,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import Header from "@/components/Header";
+import Skeleton from "@mui/material/Skeleton";
 import { useGetProductsQuery, useGetUserQuery } from "@/redux/services/apiSlice";
 import Product from "@/components/Product";
 import ProductCard from "@/components/Product";
@@ -22,13 +23,14 @@ interface pageProps {}
 const Page: FC<pageProps> = ({}) => {
   const { data: products, isLoading, error } = useGetProductsQuery({});
   console.log(typeof products);
+  const bool = true;
 
   const isNonMobile = useMediaQuery("(min-width:1000px)");
 
   return (
-    <Box m={"1.5rem 2.5rem"}>
+    <Box m={"1.5rem 2.5rem"} height={isLoading ? "100vh" : "100%"}>
       <Header title={"PRODUCTS"} subTitle={"See your list of products"} />
-      {products || !isLoading ? (
+      {products ? (
         <Box
           mt="20px"
           display={"grid "}
@@ -42,21 +44,26 @@ const Page: FC<pageProps> = ({}) => {
           }}
         >
           {products.map(
-            ({ _id, name, description, price, rating, category, supply, stat }: Product) => (
-              <ProductCard
-                key={_id}
-                _id={_id}
-                name={name}
-                description={description}
-                price={price}
-                rating={rating}
-                category={category}
-                supply={supply}
-                stat={stat}
-              />
-            )
+            ({ _id, name, description, price, rating, category, supply, stat }: Product) => {
+              if (!isLoading) {
+                return (
+                  <ProductCard
+                    key={_id}
+                    _id={_id}
+                    name={name}
+                    description={description}
+                    price={price}
+                    rating={rating}
+                    category={category}
+                    supply={supply}
+                    stat={stat}
+                  />
+                );
+              }
+
+              return <Skeleton key={_id} variant="rectangular" width={210} height={118} />;
+            }
           )}
-          s
         </Box>
       ) : null}
     </Box>

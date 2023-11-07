@@ -156,7 +156,11 @@ const Sidebar: FC<SidebarProps> = ({
               {navItems.map(({ text, icon }) => {
                 if (!icon) {
                   return (
-                    <Typography key={text} sx={{ m: "2.25rem 0 1rem 3rem" }}>
+                    <Typography
+                      key={text}
+                      sx={{ m: "2.25rem 0 1rem 3rem" }}
+                      color={theme.palette.secondary[100]}
+                    >
                       {text}
                     </Typography>
                   );
@@ -177,7 +181,7 @@ const Sidebar: FC<SidebarProps> = ({
                           color:
                             active === lcText
                               ? theme.palette.primary[600]
-                              : theme.palette.secondary[100],
+                              : theme.palette.grey[300],
                         }}
                       >
                         <ListItemIcon
@@ -186,7 +190,7 @@ const Sidebar: FC<SidebarProps> = ({
                             color:
                               active === lcText
                                 ? theme.palette.primary[600]
-                                : theme.palette.secondary[200],
+                                : theme.palette.grey[100],
                           }}
                         >
                           {icon}
